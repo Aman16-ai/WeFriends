@@ -4,9 +4,34 @@ import { Input, InputLabel, Step, TextField, Typography,Button } from "@mui/mate
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
+import {useSelector,useDispatch} from 'react-redux'
+import { setCredentials,loginThunk } from '../../slices/loginSlice'
+import { useNavigate } from 'react-router-dom'
 export default function Login() {
   
+  const credentials = useSelector((state)=>state.login.credentials)
+  const token = useSelector((state)=> state.login.token)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
+  const handleOnChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    dispatch(setCredentials({name,value}))
+  }
+
+  const handleLoginBtn = async ()=> {
+    dispatch(loginThunk(credentials))
+  }
+  useEffect(()=> {
+    // console.log(token)
+    if(token !== null && token !== undefined && token !== "" && token !== " ") {
+      localStorage.setItem("token",token)
+      navigate("/")
+      window.location.reload(true)
+    }
+  },[token])
   return (
     <>
       <div style={{ backgroundColor:"#F0F2F5",width:"100vw",height:"100vh", display: "flex", justifyContent: "center", alignItems: "center" }} className="container">
@@ -28,8 +53,8 @@ export default function Login() {
             marginBottom: "10px"
           }}>Login</h3>
 
-          <TextField style={{marginTop:"10px",width:"26vw"}} variant='outlined' label="Username"/>
-          <TextField style={{marginTop:"10px",width:"26vw"}} variant='outlined' label="Password" type={"password"}/>
+          <TextField style={{marginTop:"10px",width:"26vw"}} variant='outlined' name="username" onChange={handleOnChange} label="Username"/>
+          <TextField style={{marginTop:"10px",width:"26vw"}} variant='outlined' label="Password" name="password" onChange={handleOnChange} type={"password"}/>
         <Button variant="contained" style={{
           marginTop:"5vh",
           marginBottom:"2vh",
@@ -38,7 +63,7 @@ export default function Login() {
           borderRadius:"1.5rem",
           width:"10vw",
           height:"7vh"
-          }}>Login</Button>
+          }} onClick={handleLoginBtn} >Login</Button>
           <Typography style={{marginBottom:"20px",alignSelf:"flex-start",marginLeft:"3.7vw"}} variant='p'>
             Don't have an account ? <Link style={{color:"blue"}} to="/Register">Register</Link>
           </Typography>
