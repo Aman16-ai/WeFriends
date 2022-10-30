@@ -17,6 +17,6 @@ const storage = multer.diskStorage({
 const upload = multer({storage : storage})
 
 router.post("/register",upload.single('image'),register)
-router.get("/login",login)
+router.post("/login",login)
 router.get("/getUserProfile",authMiddleware,getUserProfile)
 module.exports = router
