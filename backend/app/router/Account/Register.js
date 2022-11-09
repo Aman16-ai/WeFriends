@@ -36,7 +36,7 @@ module.exports = async(req,res,next) => {
       console.log(authtoken);
       //sending the authtoken as a response
       success = true;
-      return res.json({success, authtoken })
+      return res.status(200).json({success, authtoken })
     }
     catch(err) {
         return res.status(500).json({success,error:"Some internal server error"})
