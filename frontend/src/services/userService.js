@@ -22,10 +22,22 @@ export const loginUserService = async(credentials) => {
 
 export const registerUserService = async(credentials) => {
     try {
+        const {image,firstname,lastname,username,email,password} = credentials
+        console.log(credentials)
+        const formData = new FormData();
+        formData.append('image',image)
+        formData.append('firstname',firstname)
+        formData.append('lastname',lastname)
+        formData.append('email',email)
+        formData.append('username',username)
+        formData.append('password',password)
+        
+
+        console.log(formData)
         const url = `${BASE_URL}/register`;
         const response = await fetch(url,{
             method:"POST",
-            body : JSON.stringify(credentials)
+            body : JSON.stringify(formData)
         })
         const data = await response.json();
         console.log(data)
