@@ -1,5 +1,24 @@
 const BASE_URL = "http://localhost:5000/api/account/"
 
+
+export const getUserProfile = async() => {
+    try {
+        const url = `${BASE_URL}/getUserProfile`;
+        const response = await fetch(url,{
+            method:"GET",
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        const data = await response.json()
+        console.log(data)
+        return data
+    }
+    catch(err) {
+        console.log(err)
+        return err
+    }
+}
 export const loginUserService = async(credentials) => {
     try {
         const url = `${BASE_URL}/login`;
