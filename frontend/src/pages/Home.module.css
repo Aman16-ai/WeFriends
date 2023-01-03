@@ -3,3 +3,36 @@
     width: 100vw;
     height: 100%;
 }
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.left-container {
+    width: 65vw;
+    height: 100vh;
+    /* border: 2px solid green; */
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+.right-container {
+    width: 35vw;
+    height: 100vh;
+    border: 2px solid orange;
+    margin-right: 10vw;
+}
+
+.left-upper-container {
+    width: 100%;
+    height: 40vh;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.left-bottom-container {
+    width: 100%;
+    height: 60vh;
+    /* border: 2px solid blue; */
+}
