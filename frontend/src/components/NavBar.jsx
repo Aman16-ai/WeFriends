@@ -38,7 +38,7 @@ export default function NavBar() {
 
         <div style={{marginLeft:"8vw",display:"flex",justifyContent:"center",alignItems:"center"}}>
             <h3 style={{fontSize:'larger'}}>Hi! {user?.profile?.username}</h3>
-            <img style={{marginLeft:"19px",borderRadius:"15rem",width:"5vw",height:"60px"}} src={`http://localhost:5000/${user?.profile?.profileImg}`} alt="" />
+            <img style={{marginLeft:"19px",borderRadius:"100%",width:"5vw",height:"60px"}} src={`http://localhost:5000/${user?.profile?.profileImg}`} alt="" />
         </div>
     </header>
   )
