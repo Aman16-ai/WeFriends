@@ -26,7 +26,7 @@ export const postSlice = createSlice({
     name :"post",
     reducers : {
         setFormData : (state,action) => {
-            state.formData = action.payload.value
+            state.formData = {...state.formData,[action.payload.name]:action.payload.value}
         }
     },
     extraReducers : {

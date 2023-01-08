@@ -8,7 +8,7 @@ export const uploadPost = async(formData) => {
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            body : JSON.stringify(formData)
+            body : formData
         })
         if(response.status === 200) {
             const data = await response.json()
